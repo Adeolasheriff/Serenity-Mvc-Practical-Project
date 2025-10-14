@@ -2,10 +2,9 @@
 
 public static partial class ESM
 {
-    public const string GenrePage = "~/esm/Modules/MovieDBS/Genre/GenrePage.js";
     public const string LanguagePage = "~/esm/Modules/Administration/Language/LanguagePage.js";
     public const string LoginPage = "~/esm/Modules/Membership/Account/Login/LoginPage.js";
-    public const string MoviePage = "~/esm/Modules/MovieDB/Movie/MoviePage.js";
+    public const string MoviePage = "~/esm/Modules/Administration/Movie/MoviePage.js";
     public const string RolePage = "~/esm/Modules/Administration/Role/RolePage.js";
     public const string ScriptInit = "~/esm/Modules/Common/ScriptInit.js";
     public const string SignUpPage = "~/esm/Modules/Membership/Account/SignUp/SignUpPage.js";
@@ -19,6 +18,11 @@ public static partial class ESM
             public static partial class Language
             {
                 public const string LanguagePage = "~/esm/Modules/Administration/Language/LanguagePage.js";
+            }
+
+            public static partial class Movie
+            {
+                public const string MoviePage = "~/esm/Modules/Administration/Movie/MoviePage.js";
             }
 
             public static partial class Role
@@ -55,22 +59,6 @@ public static partial class ESM
                 {
                     public const string SignUpPage = "~/esm/Modules/Membership/Account/SignUp/SignUpPage.js";
                 }
-            }
-        }
-
-        public static partial class MovieDB
-        {
-            public static partial class Movie
-            {
-                public const string MoviePage = "~/esm/Modules/MovieDB/Movie/MoviePage.js";
-            }
-        }
-
-        public static partial class MovieDBS
-        {
-            public static partial class Genre
-            {
-                public const string GenrePage = "~/esm/Modules/MovieDBS/Genre/GenrePage.js";
             }
         }
     }

@@ -1,9 +1,9 @@
 ﻿using Serenity.Services;
-using MyRequest = Serenity.Services.SaveRequest<ToDo.MovieDB.MovieRow>;
+using MyRequest = Serenity.Services.SaveRequest<ToDo.Administration.MovieRow>;
 using MyResponse = Serenity.Services.SaveResponse;
-using MyRow = ToDo.MovieDB.MovieRow;
+using MyRow = ToDo.Administration.MovieRow;
 
-namespace ToDo.MovieDB;
+namespace ToDo.Administration;
 
 public interface IMovieSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> { }
 

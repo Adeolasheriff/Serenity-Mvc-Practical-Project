@@ -1,9 +1,9 @@
 ﻿using Serenity.Services;
 using MyRequest = Serenity.Services.ListRequest;
-using MyResponse = Serenity.Services.ListResponse<ToDo.MovieDB.MovieRow>;
-using MyRow = ToDo.MovieDB.MovieRow;
+using MyResponse = Serenity.Services.ListResponse<ToDo.Administration.MovieRow>;
+using MyRow = ToDo.Administration.MovieRow;
 
-namespace ToDo.MovieDB;
+namespace ToDo.Administration;
 
 public interface IMovieListHandler : IListHandler<MyRow, MyRequest, MyResponse> { }
 

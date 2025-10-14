@@ -6,57 +6,57 @@ using Serenity.Web;
 using System;
 using System.Data;
 using System.Globalization;
-using MyRow = ToDo.MovieDBS.GenreRow;
+using MyRow = ToDo.Administration.MovieRow;
 
-namespace ToDo.MovieDBS.Endpoints;
+namespace ToDo.Administration.Endpoints;
 
-[Route("Services/MovieDBS/Genre/[action]")]
+[Route("Services/Administration/Movie/[action]")]
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-public class GenreEndpoint : ServiceEndpoint
+public class MovieEndpoint : ServiceEndpoint
 {
     [HttpPost, AuthorizeCreate(typeof(MyRow))]
     public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request,
-        [FromServices] IGenreSaveHandler handler)
+        [FromServices] IMovieSaveHandler handler)
     {
         return handler.Create(uow, request);
     }
 
     [HttpPost, AuthorizeUpdate(typeof(MyRow))]
     public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request,
-        [FromServices] IGenreSaveHandler handler)
+        [FromServices] IMovieSaveHandler handler)
     {
         return handler.Update(uow, request);
     }
  
     [HttpPost, AuthorizeDelete(typeof(MyRow))]
     public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request,
-        [FromServices] IGenreDeleteHandler handler)
+        [FromServices] IMovieDeleteHandler handler)
     {
         return handler.Delete(uow, request);
     }
 
     [HttpPost]
     public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request,
-        [FromServices] IGenreRetrieveHandler handler)
+        [FromServices] IMovieRetrieveHandler handler)
     {
         return handler.Retrieve(connection, request);
     }
 
     [HttpPost, AuthorizeList(typeof(MyRow))]
     public ListResponse<MyRow> List(IDbConnection connection, ListRequest request,
-        [FromServices] IGenreListHandler handler)
+        [FromServices] IMovieListHandler handler)
     {
         return handler.List(connection, request);
     }
 
     [HttpPost, AuthorizeList(typeof(MyRow))]
     public FileContentResult ListExcel(IDbConnection connection, ListRequest request,
-        [FromServices] IGenreListHandler handler,
+        [FromServices] IMovieListHandler handler,
         [FromServices] IExcelExporter exporter)
     {
         var data = List(connection, request, handler).Entities;
-        var bytes = exporter.Export(data, typeof(Columns.GenreColumns), request.ExportColumns);
-        return ExcelContentResult.Create(bytes, "GenreList_" +
+        var bytes = exporter.Export(data, typeof(Columns.MovieColumns), request.ExportColumns);
+        return ExcelContentResult.Create(bytes, "MovieList_" +
             DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
     }
 }

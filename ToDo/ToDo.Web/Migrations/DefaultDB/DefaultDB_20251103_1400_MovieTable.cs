@@ -1,8 +1,9 @@
 using FluentMigrator;
 
-namespace ToDo.Migrations.DefaultDB;
-[MigrationKey(20221114_1505)]
-public class DefaultDB_20221114_1505_MovieTable:AutoReversingMigration
+namespace MovieTutorial.Migrations.DefaultDB;
+
+[DefaultDB, MigrationKey(20241114_1505)]
+public class DefaultDB_20221114_1505_MovieTable : AutoReversingMigration
 {
     public override void Up()
     {
@@ -16,5 +17,4 @@ public class DefaultDB_20221114_1505_MovieTable:AutoReversingMigration
             .WithColumn("ReleaseDate").AsDateTime().Nullable()
             .WithColumn("Runtime").AsInt32().Nullable();
     }
-
 }

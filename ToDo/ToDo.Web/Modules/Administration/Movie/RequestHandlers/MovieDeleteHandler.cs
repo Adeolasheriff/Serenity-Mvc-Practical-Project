@@ -1,9 +1,9 @@
-using Serenity.Services;
+﻿using Serenity.Services;
 using MyRequest = Serenity.Services.DeleteRequest;
 using MyResponse = Serenity.Services.DeleteResponse;
-using MyRow = ToDo.MovieDB.MovieRow;
+using MyRow = ToDo.Administration.MovieRow;
 
-namespace ToDo.MovieDB;
+namespace ToDo.Administration;
 
 public interface IMovieDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> { }
 
