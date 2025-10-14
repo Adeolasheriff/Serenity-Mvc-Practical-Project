@@ -2,7 +2,7 @@
 import { MovieRow } from "./MovieRow";
 
 export namespace MovieService {
-    export const baseUrl = 'MovieDB/Movie';
+    export const baseUrl = 'Administration/Movie';
 
     export declare function Create(request: SaveRequest<MovieRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): PromiseLike<SaveResponse>;
     export declare function Update(request: SaveRequest<MovieRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): PromiseLike<SaveResponse>;
@@ -11,11 +11,11 @@ export namespace MovieService {
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<MovieRow>) => void, opt?: ServiceOptions<any>): PromiseLike<ListResponse<MovieRow>>;
 
     export const Methods = {
-        Create: "MovieDB/Movie/Create",
-        Update: "MovieDB/Movie/Update",
-        Delete: "MovieDB/Movie/Delete",
-        Retrieve: "MovieDB/Movie/Retrieve",
-        List: "MovieDB/Movie/List"
+        Create: "Administration/Movie/Create",
+        Update: "Administration/Movie/Update",
+        Delete: "Administration/Movie/Delete",
+        Retrieve: "Administration/Movie/Retrieve",
+        List: "Administration/Movie/List"
     } as const;
 
     [

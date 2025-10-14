@@ -1,4 +1,5 @@
 ﻿using Serenity.Navigation;
+using MyPages = ToDo.Administration.Pages;
 using Administration = ToDo.Administration.Pages;
 
 [assembly: NavigationMenu(9000, "Administration", icon: "fa-wrench")]
@@ -6,3 +7,4 @@ using Administration = ToDo.Administration.Pages;
 [assembly: NavigationLink(9200, "Administration/Translations", typeof(Administration.TranslationPage), icon: "fa-comment-o")]
 [assembly: NavigationLink(9300, "Administration/Roles", typeof(Administration.RolePage), icon: "fa-lock")]
 [assembly: NavigationLink(9400, "Administration/User Management", typeof(Administration.UserPage), icon: "fa-users")]
+[assembly: NavigationLink(int.MaxValue, "Administration/Movie", typeof(MyPages.MoviePage), icon: null)]
