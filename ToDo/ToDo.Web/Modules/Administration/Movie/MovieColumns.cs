@@ -1,6 +1,8 @@
-﻿using Serenity.ComponentModel;
+using MovieTutorial;
+using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
+using ToDo.Modules.Administration.Movie;
 
 namespace ToDo.Administration.Columns;
 
@@ -16,5 +18,10 @@ public class MovieColumns
     public string Storyline { get; set; }
     public int Year { get; set; }
     public DateTime ReleaseDate { get; set; }
+    public MovieKind Kind { get; set; }
+    //...
+    [Width(200), GenreListFormatter,QuickFilter]
+    public List<int> GenreList { get; set; }
+    [DisplayName("Runtime (mins)")]
     public int Runtime { get; set; }
 }

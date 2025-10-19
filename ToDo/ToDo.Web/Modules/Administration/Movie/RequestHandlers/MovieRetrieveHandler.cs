@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.RetrieveRequest;
 using MyResponse = Serenity.Services.RetrieveResponse<ToDo.Administration.MovieRow>;
 using MyRow = ToDo.Administration.MovieRow;

@@ -1,5 +1,7 @@
 ﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
+import { GenreListFormatter } from "../../Administration/Movie/GenreListFormatter";
+import { MovieKind } from "../Modules/Administration.Movie.MovieKind";
 import { MovieRow } from "./MovieRow";
 
 export interface MovieColumns {
@@ -9,6 +11,8 @@ export interface MovieColumns {
     Storyline: Column<MovieRow>;
     Year: Column<MovieRow>;
     ReleaseDate: Column<MovieRow>;
+    Kind: Column<MovieRow>;
+    GenreList: Column<MovieRow>;
     Runtime: Column<MovieRow>;
 }
 
@@ -16,3 +20,5 @@ export class MovieColumns extends ColumnsBase<MovieRow> {
     static readonly columnsKey = 'Administration.Movie';
     static readonly Fields = fieldsProxy<MovieColumns>();
 }
+
+[MovieKind, GenreListFormatter]; // referenced types

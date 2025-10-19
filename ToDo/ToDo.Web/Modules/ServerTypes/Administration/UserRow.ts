@@ -2,6 +2,8 @@
 
 export interface UserRow {
     UserId?: number;
+    TenantId?: number;
+    TenantName?: string;
     Username?: string;
     Source?: string;
     PasswordHash?: string;

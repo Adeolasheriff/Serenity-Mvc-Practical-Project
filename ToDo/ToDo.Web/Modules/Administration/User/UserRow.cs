@@ -1,4 +1,4 @@
-﻿namespace ToDo.Administration;
+namespace ToDo.Administration;
 
 [ConnectionKey("Default"), Module("Administration"), TableName("Users")]
 [DisplayName("Users"), InstanceName("User")]
@@ -38,6 +38,14 @@ public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.Ro
     [DisplayName("Activated"), NotNull, Insertable(false), Updatable(true)]
     public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
 
+    [DisplayName("Tenant"), ForeignKey("Tenants", "TenantId"), LeftJoin("tnt")]
+    [LookupEditor(typeof(TenantsRow))]
+    public int? TenantId { get => Fields.TenantId[this]; set => Fields.TenantId[this] = value; }
+
+    [DisplayName("Tenant"), Expression("tnt.TenantName")]
+    public string TenantName { get => Fields.TenantName[this]; set => Fields.TenantName[this] = value; }
+
+
     [DisplayName("Confirm Password"), Size(50), NotMapped]
     public string PasswordConfirm { get => fields.PasswordConfirm[this]; set => fields.PasswordConfirm[this] = value; }
 
@@ -57,6 +65,8 @@ public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.Ro
     public class RowFields : Serenity.Extensions.Entities.LoggingRowFields
     {
         public Int32Field UserId;
+        public Int32Field TenantId;
+        public StringField TenantName;
         public StringField Username;
         public StringField Source;
         public StringField PasswordHash;

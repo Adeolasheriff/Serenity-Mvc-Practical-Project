@@ -1,0 +1,8 @@
+namespace ToDo.Modules.Administration.MovieCast
+
+  .s-MovieDB-MovieCastEditDialog > .modal-dialog
+{
+  width: 450px;
+}
+
+

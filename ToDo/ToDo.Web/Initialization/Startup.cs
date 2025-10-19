@@ -1,4 +1,4 @@
-﻿using System.Data.Common;
+using System.Data.Common;
 using System.IO;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -100,6 +100,7 @@ public partial class Startup
         services.AddSingleton<IRolePermissionService, AppServices.RolePermissionService>();
         services.AddSingleton<IUploadAVScanner, ClamAVUploadScanner>();
         services.AddSingleton<IUserPasswordValidator, AppServices.UserPasswordValidator>();
+        services.AddSingleton<IUserClaimCreator, AppServices.TenantUserClaimCreator>();
         services.AddUserProvider<AppServices.UserAccessor, AppServices.UserRetrieveService>();
         services.AddServiceHandlers();
         services.AddDynamicScripts();
