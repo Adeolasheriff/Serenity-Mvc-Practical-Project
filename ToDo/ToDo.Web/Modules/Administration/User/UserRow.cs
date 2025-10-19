@@ -22,7 +22,7 @@ public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.Ro
     [DisplayName("Password Salt"), Size(10), NotNull, Insertable(false), Updatable(false), MinSelectLevel(SelectLevel.Never)]
     public string PasswordSalt { get => fields.PasswordSalt[this]; set => fields.PasswordSalt[this] = value; }
 
-    [DisplayName("Display Name"), Size(100), NotNull, LookupInclude]
+    [DisplayName("Display Namess"), Size(100), NotNull, LookupInclude]
     public string DisplayName { get => fields.DisplayName[this]; set => fields.DisplayName[this] = value; }
 
     [DisplayName("Email"), Size(100)]
