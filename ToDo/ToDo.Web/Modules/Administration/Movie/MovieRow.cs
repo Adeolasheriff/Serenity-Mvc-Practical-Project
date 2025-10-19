@@ -1,8 +1,5 @@
-﻿using Serenity.ComponentModel;
-using Serenity.Data;
-using Serenity.Data.Mapping;
-using System;
-using System.ComponentModel;
+using ToDo.Administration.Columns;
+using ToDo.Modules.Administration.Movie;
 
 namespace ToDo.Administration;
 
@@ -25,13 +22,34 @@ public sealed class MovieRow : Row<MovieRow.RowFields>, IIdRow, INameRow
     [DisplayName("Storyline")]
     public string Storyline { get => fields.Storyline[this]; set => fields.Storyline[this] = value; }
 
+     [DisplayName("Kind"), NotNull, DefaultValue(MovieKind.MiniSeries)]
+     public MovieKind? Kind { get => fields.Kind[this]; set => fields.Kind[this] = value; }
+
+    [DisplayName("Genres"), LookupEditor(typeof(GenreRow), Multiple = true), NotMapped]
+    [LinkingSetRelation(typeof(MovieGenresRow), nameof(MovieGenresRow.MovieId), nameof(MovieGenresRow.GenreId))]
+    public List<int> GenreList { get => fields.GenreList[this]; set => fields.GenreList[this] = value; }
+
     [DisplayName("Year")]
     public int? Year { get => fields.Year[this]; set => fields.Year[this] = value; }
+    [DisplayName("Primary Image"), Size(100)]
+    [ImageUploadEditor(FilenameFormat = "Movie/PrimaryImage/~")]
+    public string PrimaryImage { get => fields.PrimaryImage[this]; set => fields.PrimaryImage[this] = value; }
 
+    [DisplayName("Gallery Images")]
+    [MultipleImageUploadEditor(FilenameFormat = "Movie/GalleryImages/~")]
+    public string GalleryImages { get => fields.GalleryImages[this]; set => fields.GalleryImages[this] = value; }
+
+
+    //[DisplayName("Cast List"), NotMapped]
+    //public List<MovieCastRow> CastList { get => fields.CastList[this]; set => fields.CastList[this] = value; }
+
+    [MasterDetailRelation(foreignKey: nameof(MovieCastRow.MovieId), ColumnsType = typeof(MovieCastColumns))]
+    [DisplayName("Cast List"), NotMapped]
+    public List<MovieCastRow> CastList { get => fields.CastList[this]; set => fields.CastList[this] = value; }
     [DisplayName("Release Date")]
     public DateTime? ReleaseDate { get => fields.ReleaseDate[this]; set => fields.ReleaseDate[this] = value; }
 
-    [DisplayName("Runtime")]
+    [DisplayName("Runtime(mins)")]
     public int? Runtime { get => fields.Runtime[this]; set => fields.Runtime[this] = value; }
 
     public class RowFields : RowFieldsBase
@@ -42,7 +60,13 @@ public sealed class MovieRow : Row<MovieRow.RowFields>, IIdRow, INameRow
         public StringField Storyline;
         public Int32Field Year;
         public DateTimeField ReleaseDate;
+        public StringField PrimaryImage;
+        public StringField GalleryImages;
+        public ListField<int> GenreList;
+        public RowListField<MovieCastRow> CastList;
+        public EnumField<MovieKind> Kind;
         public Int32Field Runtime;
+
 
     }
 }

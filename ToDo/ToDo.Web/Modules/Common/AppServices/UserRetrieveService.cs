@@ -1,4 +1,4 @@
-﻿using MyRow = ToDo.Administration.UserRow;
+using MyRow = ToDo.Administration.UserRow;
 
 namespace ToDo.AppServices;
 public class UserRetrieveService(ITwoLevelCache cache, ISqlConnections sqlConnections)
@@ -18,7 +18,8 @@ public class UserRetrieveService(ITwoLevelCache cache, ISqlConnections sqlConnec
             PasswordHash = user.PasswordHash,
             PasswordSalt = user.PasswordSalt,
             UpdateDate = user.UpdateDate,
-            LastDirectoryUpdate = user.LastDirectoryUpdate
+            LastDirectoryUpdate = user.LastDirectoryUpdate,
+            TenantId = user.TenantId.Value
         };
     }
 }

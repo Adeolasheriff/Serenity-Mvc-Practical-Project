@@ -6,19 +6,59 @@ namespace texts {
 
         namespace Administration {
 
+            namespace Genre {
+                export const GenreId: string;
+                export const Name: string;
+            }
+
             namespace Language {
                 export const LanguageId: string;
                 export const LanguageName: string;
             }
 
             namespace Movie {
+                export const CastList: string;
                 export const Description: string;
+                export const GalleryImages: string;
+                export const GenreList: string;
+                export const Kind: string;
                 export const MovieId: string;
+                export const PrimaryImage: string;
                 export const ReleaseDate: string;
                 export const Runtime: string;
                 export const Storyline: string;
                 export const Title: string;
                 export const Year: string;
+            }
+
+            namespace MovieCast {
+                export const Character: string;
+                export const MovieCastId: string;
+                export const MovieId: string;
+                export const MovieTitle: string;
+                export const PersonFullName: string;
+                export const PersonId: string;
+            }
+
+            namespace MovieGenres {
+                export const GenreId: string;
+                export const GenreName: string;
+                export const MovieGenreId: string;
+                export const MovieId: string;
+                export const MovieTitle: string;
+            }
+
+            namespace Person {
+                export const BirthDate: string;
+                export const BirthPlace: string;
+                export const FirstName: string;
+                export const FullName: string;
+                export const GalleryImages: string;
+                export const Gender: string;
+                export const Height: string;
+                export const LastName: string;
+                export const PersonId: string;
+                export const PrimaryImage: string;
             }
 
             namespace Role {
@@ -31,6 +71,11 @@ namespace texts {
                 export const RoleId: string;
                 export const RoleName: string;
                 export const RolePermissionId: string;
+            }
+
+            namespace Tenants {
+                export const TenantId: string;
+                export const TenantName: string;
             }
 
             namespace User {
@@ -46,6 +91,8 @@ namespace texts {
                 export const PasswordSalt: string;
                 export const Roles: string;
                 export const Source: string;
+                export const TenantId: string;
+                export const TenantName: string;
                 export const UpdateDate: string;
                 export const UpdateUserId: string;
                 export const UserId: string;
@@ -159,10 +206,15 @@ namespace texts {
 const Texts: typeof texts = proxyTexts({}, '', {
     Db: {
         Administration: {
+            Genre: {},
             Language: {},
             Movie: {},
+            MovieCast: {},
+            MovieGenres: {},
+            Person: {},
             Role: {},
             RolePermission: {},
+            Tenants: {},
             User: {},
             UserPermission: {},
             UserRole: {}

@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<ToDo.Administration.MovieRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = ToDo.Administration.MovieRow;
