@@ -1,4 +1,5 @@
-﻿using MyRequest = Serenity.Services.SaveRequest<ToDo.Administration.UserRow>;
+using AppServices;
+using MyRequest = Serenity.Services.SaveRequest<ToDo.Administration.UserRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = ToDo.Administration.UserRow;
 
@@ -65,6 +66,9 @@ public class UserSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
 
             if (Row.DisplayName != Old.DisplayName)
                 Row.DisplayName = UserHelper.ValidateDisplayName(Row.DisplayName, Localizer);
+
+            if (Old.TenantId != User.GetTenantId())
+                Permissions.ValidatePermission(PermissionKeys.Tenants, Context.Localizer);
         }
 
         if (IsCreate)
@@ -83,6 +87,7 @@ public class UserSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
         }
     }
 
+ 
     protected override void SetInternalFields()
     {
         base.SetInternalFields();
@@ -91,6 +96,8 @@ public class UserSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
         {
             Row.Source = "site";
             Row.IsActive = Row.IsActive ?? 1;
+            if (!Permissions.HasPermission(PermissionKeys.Tenants) || Row.TenantId == null)
+                Row.TenantId = User.GetTenantId();
         }
 
         if (IsCreate || !Row.Password.IsEmptyOrNull())
@@ -100,7 +107,6 @@ public class UserSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
             Row.PasswordSalt = salt;
         }
     }
-
     protected override void AfterSave()
     {
         base.AfterSave();

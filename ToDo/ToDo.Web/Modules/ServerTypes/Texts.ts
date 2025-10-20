@@ -27,6 +27,7 @@ namespace texts {
                 export const ReleaseDate: string;
                 export const Runtime: string;
                 export const Storyline: string;
+                export const TenantId: string;
                 export const Title: string;
                 export const Year: string;
             }
@@ -64,6 +65,7 @@ namespace texts {
             namespace Role {
                 export const RoleId: string;
                 export const RoleName: string;
+                export const TenantId: string;
             }
 
             namespace RolePermission {

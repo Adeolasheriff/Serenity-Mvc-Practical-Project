@@ -1,33 +1,37 @@
-﻿using MyRepository = ToDo.Administration.Repositories.UserPermissionRepository;
-using MyRow = ToDo.Administration.UserPermissionRow;
 
-namespace ToDo.Administration.Endpoints;
-[Route("Services/Administration/UserPermission/[action]")]
-[ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-public class UserPermissionEndpoint : ServiceEndpoint
+using ToDo.Administration.Repositories;
+
+namespace ToDo.Administration.Endpoints
 {
-    [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-    public SaveResponse Update(IUnitOfWork uow, UserPermissionUpdateRequest request)
+    [Route("Services/Administration/UserPermission/[action]")]
+    [ConnectionKey(typeof(UserPermissionRow)), ServiceAuthorize(typeof(UserPermissionRow))]
+    public class UserPermissionEndpoint : ServiceEndpoint
     {
-        return new MyRepository(Context).Update(uow, request);
-    }
-
-    public ListResponse<MyRow> List(IDbConnection connection, UserPermissionListRequest request)
-    {
-        return new MyRepository(Context).List(connection, request);
-    }
-
-    public ListResponse<string> ListRolePermissions(IDbConnection connection, UserPermissionListRequest request)
-    {
-        return new MyRepository(Context).ListRolePermissions(connection, request);
-    }
-
-    public ListResponse<string> ListPermissionKeys(
-        [FromServices] IPermissionKeyLister permissionKeyLister)
-    {
-        return new ListResponse<string>
+        [HttpPost, AuthorizeUpdate(typeof(UserPermissionRow))]
+        public SaveResponse Update(IUnitOfWork uow, UserPermissionUpdateRequest request)
         {
-            Entities = permissionKeyLister.ListPermissionKeys(includeRoles: false).ToList()
-        };
+            return new UserPermissionRepository(Context).Update(uow, request);
+        }
+
+        //[HttpPost, AuthorizeRead(typeof(UserPermissionRow))]
+        public ListResponse<UserPermissionRow> List(IDbConnection connection, UserPermissionListRequest request)
+        {
+            return new UserPermissionRepository(Context).List(connection, request);
+        }
+
+        //[HttpPost, AuthorizeRead(typeof(UserPermissionRow))]
+        public ListResponse<string> ListRolePermissions(IDbConnection connection, UserPermissionListRequest request)
+        {
+            return new UserPermissionRepository(Context).ListRolePermissions(connection, request);
+        }
+        public ListResponse<string> ListPermissionKeys(
+       [FromServices] IPermissionKeyLister permissionKeyLister)
+        {
+            return new ListResponse<string>
+            {
+                Entities = permissionKeyLister.ListPermissionKeys(includeRoles: false).ToList()
+            };
+        }
+
     }
 }

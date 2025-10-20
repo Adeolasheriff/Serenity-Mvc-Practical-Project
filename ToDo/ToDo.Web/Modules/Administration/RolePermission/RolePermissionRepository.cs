@@ -1,9 +1,10 @@
-﻿using System.Data;
+using System.Data;
 using MyRow = ToDo.Administration.RolePermissionRow;
 
 namespace ToDo.Administration.Repositories;
 public class RolePermissionRepository : BaseRepository
 {
+    private readonly IPermissionKeyLister permissionKeyLister;
     public RolePermissionRepository(IRequestContext context)
          : base(context)
     {
@@ -27,6 +28,10 @@ public class RolePermissionRepository : BaseRepository
 
         var newList = new HashSet<string>(request.Permissions.ToList(),
             StringComparer.OrdinalIgnoreCase);
+
+        var allowedKeys = this.permissionKeyLister.ListPermissionKeys(true);
+        if (newList.Any(x => !allowedKeys.Contains(x)))
+            throw new AccessViolationException();
 
         if (oldList.SetEquals(newList))
             return new SaveResponse();

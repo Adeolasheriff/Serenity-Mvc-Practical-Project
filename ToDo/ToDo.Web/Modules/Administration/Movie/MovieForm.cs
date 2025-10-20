@@ -1,7 +1,7 @@
 using MovieTutorial.MovieDB;
 using Serenity.ComponentModel;
 using System;
-using ToDo.Modules.Administration.Movie;
+//using ToDo.Modules.Administration.Movie;
 
 namespace ToDo.Administration.Forms;
 
@@ -20,7 +20,7 @@ public class MovieForm
     public string PrimaryImage { get; set; }
     public string GalleryImages { get; set; }
     //[Tab("Movies"), IgnoreName]
-    public string MoviesGrid { get; set; }
+    //public string MoviesGrid { get; set; }
     public int Year { get; set; }
     public DateTime ReleaseDate { get; set; }
 

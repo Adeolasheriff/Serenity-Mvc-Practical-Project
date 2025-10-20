@@ -1,10 +1,11 @@
-﻿using System.Data;
+using System.Data;
 using Microsoft.Extensions.Caching.Memory;
 using MyRow = ToDo.Administration.UserPermissionRow;
 
 namespace ToDo.Administration.Repositories;
 public class UserPermissionRepository : BaseRepository
 {
+    private readonly IPermissionKeyLister permissionKeyLister;
     public UserPermissionRepository(IRequestContext context)
          : base(context)
     {
@@ -27,6 +28,13 @@ public class UserPermissionRepository : BaseRepository
             oldList[p.PermissionKey] = p.Granted.Value;
 
         var newList = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+        foreach (var p in request.Permissions)
+            newList[p.PermissionKey] = p.Granted ?? false;
+
+        var allowedKeys = this.permissionKeyLister.ListPermissionKeys(true);
+        if (newList.Keys.Any(x => !allowedKeys.Contains(x)))
+            throw new AccessViolationException();
+
         foreach (var p in request.Permissions)
             newList[p.PermissionKey] = p.Granted ?? false;
 
