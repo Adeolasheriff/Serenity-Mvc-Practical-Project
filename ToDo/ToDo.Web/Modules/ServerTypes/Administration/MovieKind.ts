@@ -5,4 +5,4 @@ export enum MovieKind {
     TvSeries = 2,
     MiniSeries = 3
 }
-Decorators.registerEnumType(MovieKind, 'ToDo.Modules.Administration.Movie.MovieKind');
+Decorators.registerEnumType(MovieKind, 'ToDo.Administration.MovieKind');

@@ -1,7 +1,7 @@
 ﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
 import { GenreListFormatter } from "../../Administration/Movie/GenreListFormatter";
-import { MovieKind } from "../Modules/Administration.Movie.MovieKind";
+import { MovieKind } from "./MovieKind";
 import { MovieRow } from "./MovieRow";
 
 export interface MovieColumns {

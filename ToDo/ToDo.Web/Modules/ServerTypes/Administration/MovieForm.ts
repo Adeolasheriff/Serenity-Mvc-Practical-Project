@@ -1,6 +1,6 @@
 ﻿import { StringEditor, EnumEditor, LookupEditor, ImageUploadEditor, MultipleImageUploadEditor, IntegerEditor, DateEditor, TextAreaEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 import { MovieCastEditor } from "../../Administration/MovieCast/MovieCastEditor";
-import { MovieKind } from "../Modules/Administration.Movie.MovieKind";
+import { MovieKind } from "./MovieKind";
 
 export interface MovieForm {
     Title: StringEditor;
@@ -11,7 +11,6 @@ export interface MovieForm {
     GenreList: LookupEditor;
     PrimaryImage: ImageUploadEditor;
     GalleryImages: MultipleImageUploadEditor;
-    MoviesGrid: StringEditor;
     Year: IntegerEditor;
     ReleaseDate: DateEditor;
     Runtime: TextAreaEditor;
@@ -46,7 +45,6 @@ export class MovieForm extends PrefixedContext {
                 'GenreList', w3,
                 'PrimaryImage', w4,
                 'GalleryImages', w5,
-                'MoviesGrid', w0,
                 'Year', w6,
                 'ReleaseDate', w7,
                 'Runtime', w8

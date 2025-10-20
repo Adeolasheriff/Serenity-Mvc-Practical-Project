@@ -1,4 +1,4 @@
-namespace ToDo.Modules.Administration.Movie;
+namespace ToDo.Administration;
 //[EnumKey("Administration.MovieKind")]
 public enum MovieKind
 {

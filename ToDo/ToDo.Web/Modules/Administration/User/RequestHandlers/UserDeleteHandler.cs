@@ -1,5 +1,6 @@
-﻿using System.Data;
+using AppServices;
 using Serenity.Extensions.Entities;
+using System.Data;
 using MyRequest = Serenity.Services.DeleteRequest;
 using MyResponse = Serenity.Services.DeleteResponse;
 using MyRow = ToDo.Administration.UserRow;
@@ -22,6 +23,11 @@ public class UserDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyRespon
         base.ValidateRequest();
 
         environmentOptions.CheckPublicDemo(Row.UserId);
+
+
+
+        if (Row.TenantId != User.GetTenantId())
+            Permissions.ValidatePermission(PermissionKeys.Tenants, Context.Localizer);
     }
 
     protected override void OnBeforeDelete()

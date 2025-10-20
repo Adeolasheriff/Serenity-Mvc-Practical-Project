@@ -1,5 +1,5 @@
 using ToDo.Administration.Columns;
-using ToDo.Modules.Administration.Movie;
+//using ToDo.Modules.Administration.Movie;
 
 namespace ToDo.Administration;
 
@@ -8,7 +8,7 @@ namespace ToDo.Administration;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class MovieRow : Row<MovieRow.RowFields>, IIdRow, INameRow
+public sealed class MovieRow : Row<MovieRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
 {
     [DisplayName("Movie Id"), Identity, IdProperty]
     public int? MovieId { get => fields.MovieId[this]; set => fields.MovieId[this] = value; }
@@ -39,6 +39,11 @@ public sealed class MovieRow : Row<MovieRow.RowFields>, IIdRow, INameRow
     [MultipleImageUploadEditor(FilenameFormat = "Movie/GalleryImages/~")]
     public string GalleryImages { get => fields.GalleryImages[this]; set => fields.GalleryImages[this] = value; }
 
+    [Insertable(false), Updatable(false)]
+    public int? TenantId { get => Fields.TenantId[this]; set => Fields.TenantId[this] = value; }
+
+    public Int32Field TenantIdField { get => Fields.TenantId; }
+
 
     //[DisplayName("Cast List"), NotMapped]
     //public List<MovieCastRow> CastList { get => fields.CastList[this]; set => fields.CastList[this] = value; }
@@ -63,6 +68,7 @@ public sealed class MovieRow : Row<MovieRow.RowFields>, IIdRow, INameRow
         public StringField PrimaryImage;
         public StringField GalleryImages;
         public ListField<int> GenreList;
+        public Int32Field TenantId;
         public RowListField<MovieCastRow> CastList;
         public EnumField<MovieKind> Kind;
         public Int32Field Runtime;
